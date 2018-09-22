@@ -12,10 +12,12 @@
   <%= form.text_field :phone %>
 
   <div class="form-group">
-    <label for="volunteer_team_ids">What area are you interested in voluteering for?</label>
+    <label for="volunteer_team_ids">What area are you interested in volunteering for?</label>
 
     <% Team.all.each do |team| %>
-      <%= form.check_box :team_ids, value: team.id, label: team.name %>
+      <h3><%= team.name %></h3>
+      <%= simple_format team.description %>
+      <%= form.check_box :team_ids, value: team.id, label: "Volunteer for #{team.name}" %>
     <% end %>
   </div>
 

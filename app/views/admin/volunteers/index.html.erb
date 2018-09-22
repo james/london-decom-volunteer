@@ -1,0 +1,27 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link<%= ' active' if params[:team_id].blank? %>" href="/admin/volunteers">All</a>
+  </li>
+  <% Team.all.each do |team| %>
+    <li class="nav-item">
+      <a class="nav-link<%= ' active' if params[:team_id] == team.id.to_s %>" href="?team_id=<%= team.id %>"><%= team.name %></a>
+    </li>
+  <% end %>
+</ul>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Teams</th>
+  </tr>
+  <% @volunteers.each do |volunteer| %>
+    <tr>
+      <td><%= volunteer.name %></td>
+      <td><%= volunteer.email %></td>
+      <td><%= volunteer.phone %></td>
+      <td><%= volunteer.teams.collect(&:name).to_sentence %></td>
+    </tr>
+  <% end %>
+</table>

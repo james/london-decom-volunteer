@@ -5,4 +5,7 @@ Rails.application.routes.draw do
     end
   end
   root 'volunteers#new'
+  namespace :admin do
+    resources :volunteers
+  end
 end
