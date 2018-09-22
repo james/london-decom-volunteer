@@ -15,9 +15,7 @@
     <label for="volunteer_team_ids">What area are you interested in volunteering for?</label>
 
     <% Team.all.each do |team| %>
-      <h3><%= team.name %></h3>
-      <%= simple_format team.description %>
-      <%= form.check_box :team_ids, value: team.id, label: "Volunteer for #{team.name}" %>
+      <%= form.check_box :team_ids, value: team.id, label: team.name %>
     <% end %>
   </div>
 
