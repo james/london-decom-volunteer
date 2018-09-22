@@ -14,9 +14,7 @@
   <div class="form-group">
     <label for="volunteer_team_ids">What area are you interested in volunteering for?</label>
 
-    <% Team.all.each do |team| %>
-      <%= form.check_box :team_ids, value: team.id, label: team.name %>
-    <% end %>
+    <%= form.collection_check_boxes(:team_ids, Team.all, :id, :name) %>
   </div>
 
   <%= form.submit 'Volunteer!' %><br>
