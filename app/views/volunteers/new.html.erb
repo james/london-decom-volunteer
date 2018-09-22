@@ -1,0 +1,23 @@
+<p>London Decompression is created entirely by volunteers – people just like YOU!</p>
+
+<p>To get the most out of Decom, you need to get involved. From helping with welfare to making décor to cleaning up afterwards to working on the door, we have something you can do!</p>
+
+<p>Shifts are usually a few hours and you’ll have plenty of time to party – and working at Decom is really, really fun!</p>
+
+<p>Sign up today, and the relevant leads will be in contact soon!</p>
+
+<%= bootstrap_form_for @volunteer do |form| %>
+  <%= form.text_field :name %>
+  <%= form.email_field :email %>
+  <%= form.text_field :phone %>
+
+  <div class="form-group">
+    <label for="volunteer_team_ids">What area are you interested in voluteering for?</label>
+
+    <% Team.all.each do |team| %>
+      <%= form.check_box :team_ids, value: team.id, label: team.name %>
+    <% end %>
+  </div>
+
+  <%= form.submit 'Volunteer!' %><br>
+<% end %>

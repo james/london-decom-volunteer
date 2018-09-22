@@ -40,9 +40,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem "bootstrap_form", ">= 4.0.0.alpha1"
 gem 'email_validator'
-gem 'rails_admin'
-gem 'devise'
-gem 'cancancan'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
