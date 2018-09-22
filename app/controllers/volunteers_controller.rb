@@ -6,7 +6,8 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.new(volunteer_params)
     if @volunteer.save
-      redirect_to success_volunteers_path
+      VolunteerMailer.with(volunteer: @volunteer).welcome_email.deliver_now
+      render template: 'volunteers/success'
     else
       render action: :new
     end
