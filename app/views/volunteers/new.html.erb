@@ -15,5 +15,7 @@
     <%= form.collection_check_boxes(:team_ids, Team.all, :id, :name, label: 'What area are you interested in volunteering for?') %>
   </div>
 
+  <%= form.text_area :other_offers %>
+
   <%= form.submit 'Volunteer!' %><br>
 <% end %>

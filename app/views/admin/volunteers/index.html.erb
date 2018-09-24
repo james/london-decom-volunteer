@@ -15,6 +15,7 @@
     <th>Email</th>
     <th>Phone</th>
     <th>Teams</th>
+    <th>Other offers</th>
   </tr>
   <% @volunteers.each do |volunteer| %>
     <tr>
@@ -22,6 +23,7 @@
       <td><%= volunteer.email %></td>
       <td><%= volunteer.phone %></td>
       <td><%= volunteer.teams.collect(&:name).to_sentence %></td>
+      <td><%= volunteer.other_offers %></td>
     </tr>
   <% end %>
 </table>
