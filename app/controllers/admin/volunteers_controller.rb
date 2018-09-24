@@ -14,9 +14,9 @@ class Admin::VolunteersController < ApplicationController
       format.csv do
         require 'csv'
         @csv = CSV.generate do |csv|
-          csv << @volunteers.first.attributes.keys
+          csv << @volunteers.first.attributes.keys + ['teams']
           @volunteers.each do |volunteer|
-            csv << volunteer.attributes.values.collect{|x| x.to_s}
+            csv << volunteer.attributes.values.collect{|x| x.to_s} + [volunteer.teams.collect(&:name).join(", ")]
           end
         end
         send_data @csv
