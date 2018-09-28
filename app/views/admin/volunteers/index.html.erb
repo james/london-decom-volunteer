@@ -16,6 +16,7 @@
     <th>Phone</th>
     <th>Teams</th>
     <th>Other offers</th>
+    <th>Created at</th>
   </tr>
   <% @volunteers.each do |volunteer| %>
     <tr>
@@ -24,6 +25,7 @@
       <td><%= volunteer.phone %></td>
       <td><%= volunteer.teams.collect(&:name).to_sentence %></td>
       <td><%= volunteer.other_offers %></td>
+      <td><%= volunteer.created_at.to_s(:short) %></td>
     </tr>
   <% end %>
 </table>
