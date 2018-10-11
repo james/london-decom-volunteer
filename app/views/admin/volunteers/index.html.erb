@@ -7,6 +7,9 @@
       <a class="nav-link<%= ' active' if params[:team_id] == team.id.to_s %>" href="?team_id=<%= team.id %>"><%= team.name %></a>
     </li>
   <% end %>
+  <li class="nav-item">
+    <a class="nav-link<%= ' active' if params[:team_id] == 'none' %>" href="/admin/volunteers?team_id=none">None</a>
+  </li>
 </ul>
 
 <table class="table">

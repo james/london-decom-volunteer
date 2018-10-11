@@ -4,7 +4,9 @@ class Admin::VolunteersController < ApplicationController
   end
 
   def index
-    if params[:team_id]
+    if params[:team_id] == 'none'
+      @volunteers = Volunteer.all.select {|v| v.teams.count == 0}
+    elsif params[:team_id]
       @volunteers = Team.find(params[:team_id]).volunteers
     else
       @volunteers = Volunteer.all
