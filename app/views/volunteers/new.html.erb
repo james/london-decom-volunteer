@@ -12,7 +12,11 @@
   <%= form.text_field :phone %>
 
   <div class="form-group">
-    <%= form.collection_check_boxes(:team_ids, Team.all, :id, :name, label: 'What area are you interested in volunteering for?') %>
+    <%= form.label 'What area are you interested in volunteering for?' %>
+    <% Team.order(:name).all.each do |team| %>
+      <%= form.check_box :team_ids, value: team.id, label: team.name %>
+      <small class="form-text text-muted"><%= team.description %></small>
+    <% end %>
   </div>
 
   <%= form.text_area :other_offers %>
