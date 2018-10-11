@@ -7,7 +7,8 @@ class Admin::VolunteersController < ApplicationController
     if params[:team_id] == 'none'
       @volunteers = Volunteer.all.select {|v| v.teams.count == 0}
     elsif params[:team_id]
-      @volunteers = Team.find(params[:team_id]).volunteers
+      @team = Team.find(params[:team_id])
+      @volunteers = @team.volunteers
     else
       @volunteers = Volunteer.all
     end
@@ -21,7 +22,11 @@ class Admin::VolunteersController < ApplicationController
             csv << volunteer.attributes.values.collect{|x| x.to_s} + [volunteer.teams.collect(&:name).join(", ")]
           end
         end
-        send_data @csv
+        if @team
+          send_data @csv, filename: "#{@team.name} Volunteers #{Time.now.to_s(:short)}.csv"
+        else
+          send_data @csv
+        end
       end
     end
   end
