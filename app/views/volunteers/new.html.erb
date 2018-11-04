@@ -6,20 +6,33 @@
 
 <p>Sign up today, and the relevant leads will be in contact soon!</p>
 
-<%= bootstrap_form_for @volunteer do |form| %>
-  <%= form.text_field :name %>
-  <%= form.email_field :email %>
-  <%= form.text_field :phone %>
-
+<%= form_for @volunteer do |form| %>
   <div class="form-group">
-    <%= form.label 'What area are you interested in volunteering for?' %>
-    <% Team.order(:name).all.each do |team| %>
-      <%= form.check_box :team_ids, value: team.id, label: team.name %>
-      <small class="form-text text-muted"><%= team.description %></small>
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.collection_check_boxes(:team_ids, Team.order(:name).all, :id, :name, label: 'What area are you interested in volunteering for?') do |b| %>
+      <div class="form-check">
+        <%= b.check_box class: 'form-check-input' %>
+        <%= b.label(class:"form-check-label") { b.text } %>
+        <small class="form-text text-muted"><%= b.object.description %></small>
+      </div>
     <% end %>
   </div>
 
-  <%= form.text_area :other_offers %>
+  <div class="form-group">
+    <%= form.label :other_offers %>
+    <%= form.text_area :other_offers, class: 'form-control' %>
+  </div>
 
   <%= form.submit 'Volunteer!' %><br>
 <% end %>
